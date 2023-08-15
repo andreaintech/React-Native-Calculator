@@ -3,8 +3,15 @@ import {View, SafeAreaView, Text, StyleSheet, StatusBar} from 'react-native';
 import Row from "./src/components/Row";
 import Button from "./src/components/Button";
 
+const PRIMARY = "PRIMARY";
+const SECONDARY = "SECONDARY";
+
 function App(): JSX.Element {
   const [result, setResult] = useState<number>(0);
+
+  const handleButton = (value: number) => {
+    console.log(value);
+  }
 
   return (
     <View style={styles.container}>
@@ -18,18 +25,22 @@ function App(): JSX.Element {
         <Row>
           <Button
             text="AC"
+            theme={SECONDARY}
             onPress={() => console.log("clear")}
           />
           <Button
             text="+/-"
+            theme={SECONDARY}
             onPress={() => console.log("posneg")}
           />
           <Button
             text="%"
+            theme={SECONDARY}
             onPress={() => console.log("percentage")}
           />
           <Button
             text="/"
+            theme={PRIMARY}
             onPress={() => console.log("operator", "/")}
           />
         </Row>
@@ -38,8 +49,10 @@ function App(): JSX.Element {
           <Button text="7" onPress={() => console.log("number", 7)} />
           <Button text="8" onPress={() => console.log("number", 8)} />
           <Button text="9" onPress={() => console.log("number", 9)} />
+          
           <Button
             text="x"
+            theme={PRIMARY}
             onPress={() => console.log("operator", "*")}
           />
         </Row>
@@ -48,8 +61,10 @@ function App(): JSX.Element {
           <Button text="4" onPress={() => console.log("number", 4)} />
           <Button text="5" onPress={() => console.log("number", 5)} />
           <Button text="6" onPress={() => console.log("number", 6)} />
+          
           <Button
             text="-"
+            theme={PRIMARY}
             onPress={() => console.log("operator", "-")}
           />
         </Row>
@@ -58,8 +73,10 @@ function App(): JSX.Element {
           <Button text="1" onPress={() => console.log("number", 1)} />
           <Button text="2" onPress={() => console.log("number", 2)} />
           <Button text="3" onPress={() => console.log("number", 3)} />
+          
           <Button
             text="+"
+            theme={PRIMARY}
             onPress={() => console.log("operator", "+")}
           />
         </Row>
@@ -67,9 +84,11 @@ function App(): JSX.Element {
         <Row>
           <Button
             text="0"
+            size="DOUBLE"
             onPress={() => console.log("number", 0)}
           />
           <Button text="," onPress={() => console.log("number", ".")} />
+          
           <Button
             text="="
             onPress={() => console.log("equal")}

@@ -1,0 +1,11 @@
+const COLORS = {
+    PRIMARY_BG: '#FF9F0A',
+    PRIMARY_TEXT: '#FFFDF7',
+    SECONDARY_BG: '#A5A5A5',
+    SECONDARY_TEXT: '#030303',
+    DEFAULT_BG: '#343434',
+    DEFAULT_TEXT: '#F2F2F2',
+    RESULT_TEXT: '#FDFDFD',
+};
+  
+export default COLORS;
