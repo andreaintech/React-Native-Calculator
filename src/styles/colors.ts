@@ -6,6 +6,8 @@ const COLORS = {
     DEFAULT_BG: '#343434',
     DEFAULT_TEXT: '#F2F2F2',
     RESULT_TEXT: '#FDFDFD',
+    ACTIVE_OPERATOR_BG: "#FFFFFF",
+    ACTIVE_OPERATOR_TEXT: "#F6AB36",
 };
   
 export default COLORS;

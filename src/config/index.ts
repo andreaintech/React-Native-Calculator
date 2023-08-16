@@ -1,0 +1,9 @@
+const CONSTANTS = {
+    OPERATOR: "OPERATOR",
+    NUMBER: "NUMBER",
+    PRIMARY: "PRIMARY",
+    SECONDARY: "SECONDARY",
+    INITIAL_STATE: "0",
+}
+
+export default CONSTANTS;

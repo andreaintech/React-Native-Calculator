@@ -1,24 +1,39 @@
-import React from 'react';
+import React, {useState} from 'react';
 import { TouchableOpacity, StyleSheet, Text, Dimensions } from "react-native";
+
 import COLORS from '../styles/colors';
+import CONSTANTS from '../config';
 
 const screen = Dimensions.get("window");
 const buttonWidth = screen.width / 4;
 
 type ButtonProps = {
-  onPress: () => void,
+  onPress: (value: string, operator?: string) => void,
   text: string,
   size?: string,
   theme?: string,
+  type?: string,
 }
 
-const Button = ({ onPress, text, theme = "DEFAULT", size = 'DEFAULT' }: ButtonProps) => {
+const Button = ({ 
+  onPress, 
+  text, 
+  theme = "DEFAULT", 
+  size = 'DEFAULT', 
+  type = "DEFAULT",
+}: ButtonProps) => {
+  const [isActiveOperator, setIsActiveOperator] = useState(false);
   let backgroundColorButtonStyle = styles.defaultStyle.backgroundColor;
   let colorTextStyle = styles.defaultStyle.color;
 
   if (theme === 'PRIMARY') {
-    backgroundColorButtonStyle = styles.primaryStyle.backgroundColor;
-    colorTextStyle = styles.primaryStyle.color;
+    if(isActiveOperator && type === CONSTANTS.OPERATOR) {
+      backgroundColorButtonStyle = styles.activeOperatorStyle.backgroundColor;
+      colorTextStyle = styles.activeOperatorStyle.color;
+    } else {
+      backgroundColorButtonStyle = styles.primaryStyle.backgroundColor;
+      colorTextStyle = styles.primaryStyle.color;
+    }
   } else if(theme === 'SECONDARY') {
     backgroundColorButtonStyle = styles.secondaryStyle.backgroundColor;
     colorTextStyle = styles.secondaryStyle.color;
@@ -30,9 +45,14 @@ const Button = ({ onPress, text, theme = "DEFAULT", size = 'DEFAULT' }: ButtonPr
   if (size === "DOUBLE") {
     buttonStyles.push(styles.buttonDouble); // TODO improve this
   }
+
+  const handleOnPress = () => {
+    setIsActiveOperator(!isActiveOperator);
+    console.log('isActiveOperator ', isActiveOperator);
+  }
     
   return (
-    <TouchableOpacity onPress={onPress} style={[buttonStyles, size === "DOUBLE" ? styles.buttonDouble : {}]}>
+    <TouchableOpacity onPress={handleOnPress} style={[buttonStyles, size === "DOUBLE" ? styles.buttonDouble : {}]}>
       <Text style={textStyles}>{text}</Text>
     </TouchableOpacity>
   )
@@ -66,7 +86,10 @@ const styles = StyleSheet.create({
     color: COLORS.DEFAULT_TEXT,
     backgroundColor: COLORS.DEFAULT_BG
   },
-  
+  activeOperatorStyle: {
+    color: COLORS.ACTIVE_OPERATOR_TEXT,
+    backgroundColor: COLORS.ACTIVE_OPERATOR_BG
+  },
 });
 
 export default Button;

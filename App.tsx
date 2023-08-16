@@ -1,16 +1,23 @@
 import React, {useState} from 'react';
 import {View, SafeAreaView, Text, StyleSheet, StatusBar} from 'react-native';
+
 import Row from "./src/components/Row";
 import Button from "./src/components/Button";
-
-const PRIMARY = "PRIMARY";
-const SECONDARY = "SECONDARY";
+import CONSTANTS from './src/config';
 
 function App(): JSX.Element {
-  const [result, setResult] = useState<number>(0);
+  const [result, setResult] = useState<string>(CONSTANTS.INITIAL_STATE);
 
-  const handleButton = (value: number) => {
-    console.log(value);
+  const handleButton = (type: string, value: string) => {
+    if(value === "") {
+      return setResult(CONSTANTS.INITIAL_STATE);
+    }
+
+    if(type === "operator") {
+      console.log('operator!!!!')
+    }
+
+    setResult((prevResult: string) => (prevResult === CONSTANTS.INITIAL_STATE) ? value : prevResult + value);
   }
 
   return (
@@ -25,59 +32,63 @@ function App(): JSX.Element {
         <Row>
           <Button
             text="AC"
-            theme={SECONDARY}
-            onPress={() => console.log("clear")}
+            theme={CONSTANTS.SECONDARY}
+            onPress={() => handleButton(CONSTANTS.OPERATOR, "clear")}
           />
           <Button
             text="+/-"
-            theme={SECONDARY}
-            onPress={() => console.log("posneg")}
+            theme={CONSTANTS.SECONDARY}
+            onPress={() => console.log(CONSTANTS.OPERATOR, "posneg")}
           />
           <Button
             text="%"
-            theme={SECONDARY}
-            onPress={() => console.log("percentage")}
+            theme={CONSTANTS.SECONDARY}
+            onPress={() => console.log(CONSTANTS.OPERATOR, "percentage")}
           />
           <Button
             text="/"
-            theme={PRIMARY}
-            onPress={() => console.log("operator", "/")}
+            type={CONSTANTS.OPERATOR}
+            theme={CONSTANTS.PRIMARY}
+            onPress={() => handleButton(CONSTANTS.OPERATOR, "/")}
           />
         </Row>
 
         <Row>
-          <Button text="7" onPress={() => console.log("number", 7)} />
-          <Button text="8" onPress={() => console.log("number", 8)} />
-          <Button text="9" onPress={() => console.log("number", 9)} />
+          <Button text="7" onPress={() => handleButton(CONSTANTS.NUMBER, "7")} />
+          <Button text="8" onPress={() => handleButton(CONSTANTS.NUMBER, "8")} />
+          <Button text="9" onPress={() => handleButton(CONSTANTS.NUMBER, "9")} />
           
           <Button
             text="x"
-            theme={PRIMARY}
-            onPress={() => console.log("operator", "*")}
+            type={CONSTANTS.OPERATOR}
+            theme={CONSTANTS.PRIMARY}
+            onPress={() => console.log(CONSTANTS.OPERATOR, "*")}
           />
         </Row>
 
         <Row>
-          <Button text="4" onPress={() => console.log("number", 4)} />
-          <Button text="5" onPress={() => console.log("number", 5)} />
-          <Button text="6" onPress={() => console.log("number", 6)} />
+          <Button text="4" onPress={() => handleButton(CONSTANTS.NUMBER, "4")} />
+          <Button text="5" onPress={() => handleButton(CONSTANTS.NUMBER, "5")} />
+          <Button text="6" onPress={() => handleButton(CONSTANTS.NUMBER, "6")} />
           
           <Button
             text="-"
-            theme={PRIMARY}
-            onPress={() => console.log("operator", "-")}
+            type={CONSTANTS.OPERATOR}
+            theme={CONSTANTS.PRIMARY}
+            onPress={() => console.log(CONSTANTS.OPERATOR, "-")}
           />
         </Row>
 
         <Row>
-          <Button text="1" onPress={() => console.log("number", 1)} />
-          <Button text="2" onPress={() => console.log("number", 2)} />
-          <Button text="3" onPress={() => console.log("number", 3)} />
+          <Button text="1" onPress={() => handleButton(CONSTANTS.NUMBER, "1")} />
+          <Button text="2" onPress={() => handleButton(CONSTANTS.NUMBER, "2")} />
+          <Button text="3" onPress={() => handleButton(CONSTANTS.NUMBER, "3")} />
           
           <Button
             text="+"
-            theme={PRIMARY}
-            onPress={() => console.log("operator", "+")}
+            type={CONSTANTS.OPERATOR}
+            theme={CONSTANTS.PRIMARY}
+            onPress={() => console.log(CONSTANTS.OPERATOR, "+")}
           />
         </Row>
 
@@ -85,13 +96,17 @@ function App(): JSX.Element {
           <Button
             text="0"
             size="DOUBLE"
-            onPress={() => console.log("number", 0)}
+            onPress={() => handleButton(CONSTANTS.NUMBER, "0")}
           />
-          <Button text="," onPress={() => console.log("number", ".")} />
+          <Button 
+            text="," 
+            onPress={() => console.log(CONSTANTS.NUMBER, ".")} 
+          />
           
           <Button
             text="="
-            onPress={() => console.log("equal")}
+            theme={CONSTANTS.PRIMARY}
+            onPress={() => console.log(CONSTANTS.OPERATOR, "equal")}
           />
         </Row>
       </SafeAreaView>
