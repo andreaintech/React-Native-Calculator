@@ -14,3 +14,5 @@ A simple React Native calculator app in Android & iOS.
 ---
 
 This project was created using [React Native by Example](https://www.reactnativebyexample.com/) as a reference (but a few changes were added).
+
+Updated and maintained with ❤️ by [@andreaintech](https://andreaintech.github.io/web/)
